@@ -1,9 +1,10 @@
+
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import TiltElement from '../effects/TiltElement';
 
 const AboutSection = () => {
-  const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation({ threshold: 0.3 });
-  const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation({ threshold: 0.2 });
+  const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
 
   return (
     <section id="about" className="py-24 bg-studio-charcoal">

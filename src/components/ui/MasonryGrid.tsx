@@ -1,14 +1,21 @@
 
 import { useState, useEffect, ReactNode } from 'react';
 
+interface WorkItem {
+  id: number;
+  title: string;
+  category: string;
+  imageUrl: string;
+}
+
 interface MasonryGridProps {
-  children: ReactNode[];
+  items: WorkItem[];
   columns?: number;
   gap?: number;
   className?: string;
 }
 
-const MasonryGrid = ({ children, columns = 3, gap = 20, className = '' }: MasonryGridProps) => {
+const MasonryGrid = ({ items = [], columns = 3, gap = 20, className = '' }: MasonryGridProps) => {
   const [columnHeights, setColumnHeights] = useState<number[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -17,11 +24,7 @@ const MasonryGrid = ({ children, columns = 3, gap = 20, className = '' }: Masonr
     setIsLoaded(true);
   }, [columns]);
 
-  const getNextColumn = () => {
-    return columnHeights.indexOf(Math.min(...columnHeights));
-  };
-
-  if (!isLoaded) return null;
+  if (!isLoaded || !items || items.length === 0) return null;
 
   return (
     <div 
@@ -32,15 +35,27 @@ const MasonryGrid = ({ children, columns = 3, gap = 20, className = '' }: Masonr
         gap: `${gap}px`,
       }}
     >
-      {children.map((child, index) => (
+      {items.map((item, index) => (
         <div
-          key={index}
-          className="transition-all duration-500 ease-out"
+          key={item.id}
+          className="transition-all duration-500 ease-out overflow-hidden rounded-lg group cursor-pointer"
           style={{
             animationDelay: `${index * 0.1}s`,
           }}
         >
-          {child}
+          <div className="relative overflow-hidden">
+            <img
+              src={item.imageUrl}
+              alt={item.title}
+              className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-studio-charcoal/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <div className="text-center">
+                <h3 className="text-studio-bone font-semibold text-lg mb-2">{item.title}</h3>
+                <p className="text-studio-gold text-sm uppercase tracking-wider">{item.category}</p>
+              </div>
+            </div>
+          </div>
         </div>
       ))}
     </div>
