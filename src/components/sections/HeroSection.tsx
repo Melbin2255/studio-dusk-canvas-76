@@ -1,20 +1,21 @@
 
 import { useState, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import ParticleField from '../effects/ParticleField';
-import TiltElement from '../effects/TiltElement';
 
 const HeroSection = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [nameRevealed, setNameRevealed] = useState(false);
+  const [animationPhase, setAnimationPhase] = useState(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoaded(true);
-      // Trigger dramatic name reveal after initial load
-      setTimeout(() => setNameRevealed(true), 800);
-    }, 100);
-    return () => clearTimeout(timer);
+    // Cinematic sequence timing
+    const timers = [
+      setTimeout(() => setAnimationPhase(1), 500),   // Fade in background
+      setTimeout(() => setAnimationPhase(2), 1200),  // Reveal name
+      setTimeout(() => setAnimationPhase(3), 2400),  // Reveal subtitle
+      setTimeout(() => setAnimationPhase(4), 3200),  // Show CTA and scroll indicator
+    ];
+
+    return () => timers.forEach(clearTimeout);
   }, []);
 
   const scrollToAbout = () => {
@@ -23,64 +24,100 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center hero-gradient overflow-hidden">
-      {/* Enhanced Particle field background */}
+    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-studio-charcoal via-studio-hero-to to-studio-charcoal">
+      {/* Subtle particle background */}
       <ParticleField />
       
-      {/* Multiple background layers for depth */}
-      <div className="absolute inset-0 hero-gradient animate-pulse-glow opacity-20"></div>
-      <div className="absolute inset-0 bg-gradient-radial from-studio-gold/5 via-transparent to-transparent animate-pulse"></div>
-      
-      <div className="relative z-10 text-center px-6">
-        {/* Enhanced 3D Tilt container for main content */}
-        <TiltElement className="mb-8" maxTilt={20}>
-          {/* Dramatic name reveal with multiple effects */}
-          <div className="relative mb-6">
-            {/* Background glow effect */}
-            <div className={`absolute inset-0 text-6xl md:text-8xl lg:text-9xl font-light transition-all duration-3000 ${nameRevealed ? 'opacity-30 blur-md scale-110' : 'opacity-0'}`}>
-              <span className="text-studio-gold">Sojan Augustine</span>
-            </div>
-            
-            {/* Main text with enhanced reveal */}
-            <h1 className={`relative text-6xl md:text-8xl lg:text-9xl font-light transition-all duration-2000 ${isLoaded ? 'text-outline-gold opacity-100' : 'opacity-0'}`}>
-              <span className={`inline-block transition-all duration-1500 ${nameRevealed ? 'animate-dramatic-reveal-1' : 'opacity-0 scale-50 rotate-12'}`}>
-                Sojan
-              </span>
-              {' '}
-              <span className={`inline-block transition-all duration-1500 delay-300 ${nameRevealed ? 'animate-dramatic-reveal-2' : 'opacity-0 scale-50 -rotate-12'}`}>
-                Augustine
-              </span>
-            </h1>
-            
-            {/* Shimmer overlay effect */}
-            <div className={`absolute inset-0 bg-gradient-to-r from-transparent via-studio-gold/30 to-transparent transform -skew-x-12 transition-all duration-2000 ${nameRevealed ? 'animate-shimmer' : 'opacity-0'}`}></div>
-          </div>
-          
-          {/* Enhanced animated subtitle */}
-          <h2 className={`text-xl md:text-2xl lg:text-3xl font-light text-studio-bone mb-12 transition-all duration-1500 delay-1000 ${isLoaded ? 'opacity-100 translate-y-0 animate-subtle-glow' : 'opacity-0 translate-y-8'}`}>
-            <span className="inline-block bg-gradient-to-r from-studio-bone via-studio-gold to-studio-bone bg-clip-text text-transparent animate-gradient-shift">
-              Visual Artist & Post-Production Specialist
+      {/* Main content container */}
+      <div className="relative z-10 text-center px-6 max-w-6xl mx-auto">
+        {/* Name reveal with cinematic timing */}
+        <div className="mb-8">
+          <h1 className="text-7xl md:text-8xl lg:text-9xl font-light tracking-tight">
+            <span 
+              className={`inline-block transition-all duration-1000 ease-out ${
+                animationPhase >= 2 
+                  ? 'opacity-100 transform-none' 
+                  : 'opacity-0 translate-y-8 scale-95'
+              }`}
+              style={{ transitionDelay: '0ms' }}
+            >
+              <span className="text-studio-bone">Sojan</span>
             </span>
-          </h2>
-        </TiltElement>
+            <span className="text-studio-bone mx-4">·</span>
+            <span 
+              className={`inline-block transition-all duration-1000 ease-out ${
+                animationPhase >= 2 
+                  ? 'opacity-100 transform-none' 
+                  : 'opacity-0 translate-y-8 scale-95'
+              }`}
+              style={{ transitionDelay: '300ms' }}
+            >
+              <span className="text-studio-gold">Augustine</span>
+            </span>
+          </h1>
+        </div>
         
-        {/* Enhanced enter button with multiple effects */}
-        <button 
-          onClick={scrollToAbout}
-          className={`btn-studio-primary mb-16 transition-all duration-1500 delay-1500 hover:glow-gold relative overflow-hidden group transform ${isLoaded ? 'opacity-100 translate-y-0 hover:scale-110' : 'opacity-0 translate-y-8'}`}
+        {/* Subtitle with delayed reveal */}
+        <div 
+          className={`mb-16 transition-all duration-800 ease-out ${
+            animationPhase >= 3 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-6'
+          }`}
         >
-          <span className="relative z-10 transition-all duration-300 group-hover:scale-105">Enter</span>
-          <div className="absolute inset-0 bg-studio-gold transform scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full"></div>
-          <div className="absolute inset-0 animate-pulse-ring"></div>
-        </button>
+          <p className="text-xl md:text-2xl text-studio-bone/80 font-light tracking-wide">
+            Visual Artist & Post-Production Specialist
+          </p>
+          <div className="w-24 h-px bg-studio-gold mx-auto mt-6"></div>
+        </div>
         
-        {/* Enhanced explore indicator with breathing effect */}
-        <div className={`flex flex-col items-center transition-all duration-1500 delay-2000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <span className="text-studio-gold text-sm font-medium mb-4 tracking-wider animate-pulse-subtle">EXPLORE</span>
-          <div className="w-0.5 h-16 bg-studio-gold animate-draw-line-enhanced"></div>
-          <ChevronDown className="text-studio-gold mt-2 animate-bounce-enhanced hover:text-studio-gold-hover transition-colors cursor-pointer transform hover:scale-125" size={20} onClick={scrollToAbout} />
+        {/* CTA button with refined styling */}
+        <div 
+          className={`mb-20 transition-all duration-800 ease-out ${
+            animationPhase >= 4 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-6'
+          }`}
+        >
+          <button 
+            onClick={scrollToAbout}
+            className="group relative px-12 py-4 border border-studio-gold text-studio-gold hover:text-studio-charcoal transition-all duration-300 overflow-hidden bg-transparent hover:bg-studio-gold"
+          >
+            <span className="relative z-10 font-medium tracking-wider text-sm uppercase">
+              Enter Portfolio
+            </span>
+          </button>
+        </div>
+        
+        {/* Scroll indicator with improved design */}
+        <div 
+          className={`flex flex-col items-center transition-all duration-800 ease-out ${
+            animationPhase >= 4 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-6'
+          }`}
+        >
+          <div className="flex flex-col items-center cursor-pointer group" onClick={scrollToAbout}>
+            <span className="text-studio-gold/60 text-xs tracking-widest mb-4 uppercase">
+              Scroll to explore
+            </span>
+            <div className="relative">
+              <div className="w-px h-16 bg-gradient-to-b from-studio-gold/60 to-transparent"></div>
+              <ArrowDown 
+                className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 text-studio-gold/60 group-hover:text-studio-gold transition-colors duration-300 animate-bounce-slow" 
+                size={16} 
+              />
+            </div>
+          </div>
         </div>
       </div>
+      
+      {/* Subtle ambient lighting effect */}
+      <div 
+        className={`absolute inset-0 bg-gradient-radial from-studio-gold/5 via-transparent to-transparent transition-opacity duration-2000 ${
+          animationPhase >= 1 ? 'opacity-100' : 'opacity-0'
+        }`}
+      ></div>
     </section>
   );
 };
