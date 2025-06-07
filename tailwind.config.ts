@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -18,7 +19,17 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'manrope': ['Manrope', 'sans-serif'],
+			},
 			colors: {
+				'studio-hero-from': '#8B5E34',
+				'studio-hero-to': '#2E1F16',
+				'studio-charcoal': '#1E1E1E',
+				'studio-gold': '#D4AF37',
+				'studio-bone': '#F0F0F0',
+				'studio-taupe': '#2A2A2A',
+				'studio-gold-hover': '#E5BF47',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -52,16 +63,6 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
-				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
