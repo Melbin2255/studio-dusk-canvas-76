@@ -1,0 +1,45 @@
+
+/* Accessibility and Browser Support */
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--studio-charcoal);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--studio-gold);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--studio-gold-hover);
+}
+
+/* Enhanced focus states for accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--studio-gold);
+  outline-offset: 2px;
+}
+
+/* Improved contrast for better accessibility */
+.high-contrast {
+  background: var(--studio-charcoal);
+  color: var(--studio-bone);
+  border: 1px solid var(--studio-gold);
+}
+
+/* Motion reduce for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

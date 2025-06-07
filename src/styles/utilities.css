@@ -1,0 +1,44 @@
+
+/* Utility Classes */
+
+@layer utilities {
+  .font-manrope {
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .bg-studio-charcoal {
+    background-color: var(--studio-charcoal);
+  }
+
+  .bg-studio-gold {
+    background-color: var(--studio-gold);
+  }
+
+  .bg-studio-taupe {
+    background-color: var(--studio-taupe);
+  }
+
+  .text-studio-bone {
+    color: var(--studio-bone);
+  }
+
+  .text-studio-gold {
+    color: var(--studio-gold);
+  }
+
+  .border-studio-gold {
+    border-color: var(--studio-gold);
+  }
+
+  .hover\:bg-studio-gold:hover {
+    background-color: var(--studio-gold);
+  }
+
+  .hover\:text-studio-charcoal:hover {
+    color: var(--studio-charcoal);
+  }
+
+  .hover\:border-studio-gold:hover {
+    border-color: var(--studio-gold);
+  }
+}

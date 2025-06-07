@@ -1,0 +1,38 @@
+
+/* Component Styles */
+
+@layer components {
+  .hero-gradient {
+    background: radial-gradient(ellipse at center, var(--studio-hero-from) 0%, var(--studio-hero-to) 100%);
+  }
+
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+
+  .text-outline-gold {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--studio-gold);
+    text-stroke: 2px var(--studio-gold);
+  }
+
+  .glow-gold {
+    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3));
+  }
+
+  .container-studio {
+    @apply max-w-7xl mx-auto px-6 lg:px-8;
+  }
+
+  .btn-studio-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 border-2 border-studio-gold text-studio-gold hover:bg-studio-gold hover:text-studio-charcoal transition-all duration-300 rounded-full font-medium;
+  }
+
+  .btn-studio-secondary {
+    @apply inline-flex items-center justify-center px-6 py-2 bg-studio-taupe text-studio-bone hover:bg-studio-gold hover:text-studio-charcoal transition-all duration-300 rounded-lg;
+  }
+
+  .card-studio {
+    @apply bg-studio-taupe rounded-xl p-6 border border-studio-taupe hover:border-studio-gold transition-all duration-300;
+  }
+}

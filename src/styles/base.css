@@ -1,0 +1,58 @@
+
+/* Base Styles and Design System Variables */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Studio Dusk Color Palette */
+    --studio-hero-from: #8B5E34;
+    --studio-hero-to: #2E1F16;
+    --studio-charcoal: #1E1E1E;
+    --studio-gold: #D4AF37;
+    --studio-bone: #F0F0F0;
+    --studio-taupe: #2A2A2A;
+    --studio-gold-hover: #E5BF47;
+    
+    /* Original shadcn variables for compatibility */
+    --background: 30 8% 12%;
+    --foreground: 60 6% 94%;
+    --card: 30 8% 16%;
+    --card-foreground: 60 6% 94%;
+    --popover: 30 8% 16%;
+    --popover-foreground: 60 6% 94%;
+    --primary: 48 76% 53%;
+    --primary-foreground: 30 8% 12%;
+    --secondary: 30 4% 20%;
+    --secondary-foreground: 60 6% 94%;
+    --muted: 30 4% 20%;
+    --muted-foreground: 60 3% 65%;
+    --accent: 30 4% 20%;
+    --accent-foreground: 60 6% 94%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 30 4% 20%;
+    --input: 30 4% 20%;
+    --ring: 48 76% 53%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-studio-charcoal text-studio-bone font-manrope;
+    background-image: 
+      radial-gradient(circle at 25% 25%, rgba(139, 94, 52, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+  }
+}
