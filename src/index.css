@@ -55,6 +55,16 @@
       radial-gradient(circle at 25% 25%, rgba(139, 94, 52, 0.05) 0%, transparent 50%),
       radial-gradient(circle at 75% 75%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
   }
+
+  /* Improved responsive typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply leading-tight;
+  }
+
+  /* Better mobile tap targets */
+  button, a {
+    @apply min-h-[44px] sm:min-h-[auto];
+  }
 }
 
 /* Component Styles */
@@ -79,19 +89,37 @@
   }
 
   .container-studio {
-    @apply max-w-7xl mx-auto px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .btn-studio-primary {
-    @apply inline-flex items-center justify-center px-8 py-3 border-2 border-studio-gold text-studio-gold hover:bg-studio-gold hover:text-studio-charcoal transition-all duration-300 rounded-full font-medium;
+    @apply inline-flex items-center justify-center px-6 sm:px-8 py-3 border-2 border-studio-gold text-studio-gold hover:bg-studio-gold hover:text-studio-charcoal transition-all duration-300 rounded-full font-medium text-sm sm:text-base;
   }
 
   .btn-studio-secondary {
-    @apply inline-flex items-center justify-center px-6 py-2 bg-studio-taupe text-studio-bone hover:bg-studio-gold hover:text-studio-charcoal transition-all duration-300 rounded-lg;
+    @apply inline-flex items-center justify-center px-4 sm:px-6 py-2 bg-studio-taupe text-studio-bone hover:bg-studio-gold hover:text-studio-charcoal transition-all duration-300 rounded-lg text-sm sm:text-base;
   }
 
   .card-studio {
-    @apply bg-studio-taupe rounded-xl p-6 border border-studio-taupe hover:border-studio-gold transition-all duration-300;
+    @apply bg-studio-taupe rounded-xl p-4 sm:p-6 border border-studio-taupe hover:border-studio-gold transition-all duration-300;
+  }
+
+  /* Responsive grid utilities */
+  .grid-responsive {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8;
+  }
+
+  .grid-responsive-2 {
+    @apply grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12;
+  }
+
+  /* Mobile-first responsive spacing */
+  .section-padding {
+    @apply py-12 sm:py-16 lg:py-20 xl:py-24;
+  }
+
+  .section-margin {
+    @apply mb-8 sm:mb-12 lg:mb-16;
   }
 }
 
@@ -160,6 +188,15 @@
   .link-underline:hover::after {
     transform: scaleX(1);
     transform-origin: bottom left;
+  }
+
+  /* Responsive hover effects */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:scale-105 hover:-translate-y-1;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-lg hover:shadow-studio-gold/20;
   }
 }
 
@@ -283,6 +320,35 @@
   .hover\:border-studio-gold:hover {
     border-color: var(--studio-gold);
   }
+
+  /* Responsive text utilities */
+  .text-responsive-xs {
+    @apply text-xs sm:text-sm;
+  }
+
+  .text-responsive-sm {
+    @apply text-sm sm:text-base;
+  }
+
+  .text-responsive-base {
+    @apply text-base sm:text-lg;
+  }
+
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+
+  .text-responsive-xl {
+    @apply text-xl sm:text-2xl lg:text-3xl;
+  }
+
+  .text-responsive-2xl {
+    @apply text-2xl sm:text-3xl lg:text-4xl;
+  }
+
+  .text-responsive-3xl {
+    @apply text-3xl sm:text-4xl lg:text-5xl xl:text-6xl;
+  }
 }
 
 /* Accessibility and Browser Support */
@@ -307,7 +373,9 @@
 
 /* Enhanced focus states for accessibility */
 button:focus-visible,
-a:focus-visible {
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
   outline: 2px solid var(--studio-gold);
   outline-offset: 2px;
 }
@@ -327,5 +395,38 @@ a:focus-visible {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile-first responsive breakpoints */
+@media (max-width: 640px) {
+  .container-studio {
+    @apply px-4;
+  }
+  
+  /* Ensure proper mobile spacing */
+  section {
+    @apply px-4;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .container-studio {
+    @apply px-6;
+  }
+}
+
+/* Desktop optimizations */
+@media (min-width: 1025px) {
+  .container-studio {
+    @apply px-8;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .glow-gold {
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.4));
   }
 }
