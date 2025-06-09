@@ -58,7 +58,7 @@ const expertiseData = {
 };
 
 const ExpertiseSection = () => {
-  const [activeTab, setActiveTab] = useState('3D Animation');
+  const [activeTab, setActiveTab] = useState('Color Grading');
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
