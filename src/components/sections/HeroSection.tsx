@@ -1,6 +1,6 @@
-
 import { useState, useEffect } from 'react';
 import ParticleField from '../effects/ParticleField';
+import AnimatedLogo from '../AnimatedLogo';
 
 const HeroSection = () => {
   const [animationPhase, setAnimationPhase] = useState(0);
@@ -30,6 +30,15 @@ const HeroSection = () => {
       
       {/* Main content container */}
       <div className="relative z-10 text-center px-6 max-w-8xl mx-auto">
+        {/* Logo Animation */}
+        <div className={`mb-12 transition-all duration-1000 ease-out ${
+          animationPhase >= 1
+            ? 'opacity-100 transform-none'
+            : 'opacity-0 scale-50'
+        }`}>
+          <AnimatedLogo width="180" height="180" className="text-studio-gold mx-auto filter drop-shadow-2xl" />
+        </div>
+
         {/* Enhanced name reveal with varied typography */}
         <div className="mb-16">
           <h1 className="leading-none tracking-tight">
