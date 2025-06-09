@@ -60,14 +60,17 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h4 className="text-xl font-semibold text-studio-bone mb-6">Get In Touch</h4>
-            <div className="space-y-4">
-              <div className="flex items-center gap-3 text-studio-bone/70">
+            <div className="space-y-4">              <div className="flex items-center gap-3 text-studio-bone/70">
                 <Mail size={18} className="text-studio-gold" />
-                <span>hello@sojanaugustine.com</span>
+                <a href="mailto:sojannnnnhere@gmail.com" className="hover:text-studio-gold transition-colors duration-300">
+                  sojannnnnhere@gmail.com
+                </a>
               </div>
               <div className="flex items-center gap-3 text-studio-bone/70">
                 <Phone size={18} className="text-studio-gold" />
-                <span>+1 (555) 123-4567</span>
+                <a href="tel:+918075181054" className="hover:text-studio-gold transition-colors duration-300">
+                  +91 8075181054
+                </a>
               </div>
             </div>
           </div>

@@ -45,8 +45,7 @@ const HeroSection = () => {
           animationPhase >= 1
             ? 'opacity-100 transform-none'
             : 'opacity-0 scale-50'
-        }`}>
-          <div className="relative">
+        }`}>          <div className="relative -ml-1">
             <AnimatedLogo 
               width="120" 
               height="120" 
