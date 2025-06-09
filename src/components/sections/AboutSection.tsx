@@ -1,4 +1,3 @@
-
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import TiltElement from '../effects/TiltElement';
 import { Quote, Award, Target, Zap } from 'lucide-react';
@@ -8,9 +7,9 @@ const AboutSection = () => {
   const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
 
   const highlights = [
-    { icon: Award, text: "Award-winning visual storytelling", color: "text-blue-400" },
-    { icon: Target, text: "Precision-focused post-production", color: "text-green-400" },
-    { icon: Zap, text: "Cutting-edge creative techniques", color: "text-purple-400" }
+    { icon: Award, text: "Visual Development", color: "text-blue-400" },
+    { icon: Target, text: "Motion Design", color: "text-green-400" },
+    { icon: Zap, text: "Creative Direction", color: "text-purple-400" }
   ];
 
   return (
@@ -46,20 +45,17 @@ const AboutSection = () => {
             <div className="bg-studio-taupe/30 backdrop-blur-sm rounded-2xl p-8 border border-studio-gold/20 mb-8 relative">
               <Quote className="absolute top-4 left-4 text-studio-gold/40" size={24} />
               <p className="text-studio-bone/90 text-lg italic leading-relaxed pl-8">
-                "Driven by a lifelong passion for visual storytelling, I transform creative visions into compelling visual experiences."
+                "Creating immersive digital experiences through modern design and technology."
               </p>
             </div>
             
             {/* Main content */}
             <div className="space-y-6">
               <p className="text-studio-bone/90 leading-relaxed">
-                I'm Sojan Augustine, a visual artist specializing in post-production. My journey has led me through the intricate worlds of VFX, motion graphics, and video editing, allowing me to contribute to diverse projects, from commercials to film.
+                I'm Sojan Augustine, a BCA graduate and digital creative professional. My expertise spans across visual effects, motion design, and digital content creation.
               </p>
               <p className="text-studio-bone/90 leading-relaxed">
-                I believe in the power of visuals to evoke emotion and spark conversation. My work is rooted in a deep understanding of color theory, composition, and pacing, ensuring every project is not only visually stunning but also effectively communicates its intended message.
-              </p>
-              <p className="text-studio-bone/90 leading-relaxed">
-                With a keen eye for detail and a commitment to innovation, I'm always exploring new techniques and technologies to push the boundaries of what's possible in visual media.
+                With a modern approach to design and technology, I focus on creating engaging digital experiences that combine innovative techniques with practical solutions.
               </p>
             </div>
 
@@ -91,7 +87,7 @@ const AboutSection = () => {
               <TiltElement>
                 <div className="relative overflow-hidden rounded-xl">
                   <img
-                    src="/images/studio-dusk-profile.webp"
+                    src="/images/profile.jpg"
                     alt="Sojan Augustine - Visual Artist"
                     className="w-full rounded-xl shadow-lg hover:shadow-studio-gold/50 transition-all duration-500 hover:scale-105"
                   />

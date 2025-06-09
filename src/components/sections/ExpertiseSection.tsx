@@ -1,39 +1,59 @@
-
 import { useState, useRef, useEffect } from 'react';
-import { Check, ArrowRight, Sparkles } from 'lucide-react';
+import { Check, ArrowRight, Sparkles, Clapperboard, Palette, Film, Edit } from 'lucide-react';
+
+// Software icons mapping
+const softwareIcons = {
+  'Autodesk Maya': '/icons/maya.png',
+  'Cinema 4D': '/icons/c4d.png',
+  'Blender': '/icons/blender.png',
+  'Adobe After Effects': '/icons/ae.png',
+  'Blackmagic Fusion': '/icons/fusion.png',
+  'Nuke': '/icons/nuke.png',
+  'DaVinci Resolve': '/icons/resolve.png',
+  'Adobe Premiere Pro': '/icons/premiere.png',
+  'Adobe Photoshop': '/icons/photoshop.png',
+  'Adobe Illustrator': '/icons/illustrator.png'
+};
+
+const tabIcons = {
+  '3D Animation': Clapperboard,
+  'VFX': Film,
+  'Color Grading': Palette,
+  'Editing': Edit
+};
 
 const expertiseData = {
+  'Color Grading': {
+    title: 'Color Grading',
+    description: 'I meticulously refine the mood and tone of visuals, ensuring consistent and impactful aesthetics that elevate the final product.',
+    competencies: ['Color Correction', 'Look Development', 'Shot Matching', 'Stylization'],
+    tools: ['DaVinci Resolve', 'Adobe Premiere Pro'],
+    image: '/images/colorg.png',
+    color: 'from-orange-500/20 to-red-500/20'
+  },
+  'Editing': {
+    title: 'Video & Photo Editing',
+    description: 'I transform raw footage and images into polished, compelling visual content, focusing on pacing, composition, and overall narrative flow.',
+    competencies: ['Storytelling & Pacing', 'Sound Design & Mixing', 'Graphic Integration', 'Image Retouching'],
+    tools: ['Adobe Premiere Pro', 'Adobe Photoshop', 'Adobe Illustrator'],
+    image: 'images/videoedit.png',
+    color: 'from-pink-500/20 to-violet-500/20'
+  },
+  'VFX': {
+    title: 'Visual Effects',
+    description: 'I create stunning visual effects that seamlessly blend with live-action footage, enhancing storytelling and delivering impactful cinematic moments.',
+    competencies: ['Compositing', 'Green Screen Keying', 'Rotoscoping', 'Tracking & Stabilization'],
+    tools: ['Adobe After Effects', 'Blackmagic Fusion', 'Nuke'],
+    image: '/images/vfx.png',
+    color: 'from-green-500/20 to-teal-500/20'
+  },
   '3D Animation': {
     title: '3D Animation',
     description: 'I bring stories to life through captivating 3D animations, blending technical skill with artistic vision to create immersive experiences.',
     competencies: ['Character Animation', 'Motion Graphics', 'Visual Effects Integration'],
     tools: ['Autodesk Maya', 'Cinema 4D', 'Blender'],
-    image: '/lovable-uploads/f2b6ac95-7c83-4e47-ab34-ca67977c2a27.png',
+    image: '/images/3d.png',
     color: 'from-blue-500/20 to-purple-500/20'
-  },
-  'VFX': {
-    title: 'Visual Effects',
-    description: 'Creating stunning visual effects that seamlessly integrate with live-action footage, enhancing storytelling through digital artistry.',
-    competencies: ['Compositing', 'Particle Systems', 'Environment Creation'],
-    tools: ['After Effects', 'Nuke', 'Houdini'],
-    image: '/placeholder.svg',
-    color: 'from-green-500/20 to-teal-500/20'
-  },
-  'Color Grading': {
-    title: 'Color Grading',
-    description: 'Establishing mood and atmosphere through precise color correction and grading, bringing cinematic quality to every frame.',
-    competencies: ['Color Correction', 'Look Development', 'HDR Workflow'],
-    tools: ['DaVinci Resolve', 'Baselight', 'Color Finale'],
-    image: '/placeholder.svg',
-    color: 'from-orange-500/20 to-red-500/20'
-  },
-  'Editing': {
-    title: 'Post-Production Editing',
-    description: 'Crafting compelling narratives through expert editing, pacing, and seamless integration of all post-production elements.',
-    competencies: ['Narrative Editing', 'Sound Design Integration', 'Workflow Optimization'],
-    tools: ['Avid Media Composer', 'Premiere Pro', 'Final Cut Pro'],
-    image: '/placeholder.svg',
-    color: 'from-pink-500/20 to-violet-500/20'
   }
 };
 
@@ -85,14 +105,15 @@ const ExpertiseSection = () => {
           </h2>
           
           <p className="text-xl text-studio-bone/70 max-w-3xl mx-auto leading-relaxed">
-            Specialized skills and cutting-edge techniques that bring creative visions to life
+            My expertise lies in transforming creative concepts into compelling visual realities through a combination of specialized skills and cutting-edge techniques. I bring stories to life with precision and artistry across various digital mediums.
           </p>
         </div>
 
-        {/* Modern Tab Navigation */}
-        <div className={`mb-20 transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {tabs.map((tab, index) => (
+        {/* Modern Tab Navigation - Enhanced */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-20 transition-all duration-1000 delay-300">
+          {tabs.map((tab, index) => {
+            const TabIcon = tabIcons[tab as keyof typeof tabIcons];
+            return (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -101,24 +122,23 @@ const ExpertiseSection = () => {
                     ? 'bg-studio-gold text-studio-charcoal border-studio-gold shadow-xl shadow-studio-gold/25'
                     : 'bg-studio-taupe/30 text-studio-bone border-studio-taupe hover:border-studio-gold/50 backdrop-blur-sm'
                 }`}
-                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="relative z-10">
-                  <h3 className="font-semibold text-lg mb-2">{tab}</h3>
-                  <ArrowRight 
-                    size={16} 
-                    className={`transition-transform duration-300 ${
-                      activeTab === tab ? 'translate-x-2' : 'group-hover:translate-x-1'
-                    }`} 
-                  />
+                <div className="relative z-10 flex items-center gap-3">
+                  <TabIcon size={24} />
+                  <div>
+                    <h3 className="font-semibold text-lg">{tab}</h3>
+                    <span className="text-sm opacity-70">
+                      {activeTab === tab ? 'Currently viewing' : 'Click to view'}
+                    </span>
+                  </div>
                 </div>
                 
                 {activeTab !== tab && (
                   <div className="absolute inset-0 bg-gradient-to-r from-studio-gold/10 to-studio-gold/5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-2xl"></div>
                 )}
               </button>
-            ))}
-          </div>
+            );
+          })}
         </div>
 
         {/* Enhanced Content Panel */}
@@ -154,12 +174,11 @@ const ExpertiseSection = () => {
                 <Check className="text-studio-gold" size={20} />
                 Key Competencies
               </h4>
-              <div className="grid gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {activeData.competencies.map((competency, index) => (
                   <div 
                     key={index} 
-                    className="flex items-center gap-4 p-3 bg-studio-charcoal/50 rounded-xl hover:bg-studio-charcoal/70 transition-all duration-300"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="flex items-center gap-4 p-4 bg-studio-charcoal/50 rounded-xl border border-studio-gold/10 hover:border-studio-gold/30 transition-all duration-300"
                   >
                     <div className="w-2 h-2 bg-studio-gold rounded-full"></div>
                     <span className="text-studio-bone font-medium">{competency}</span>
@@ -173,15 +192,23 @@ const ExpertiseSection = () => {
               <h4 className="text-xl font-semibold text-studio-gold mb-6">
                 Primary Tools
               </h4>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-4">
                 {activeData.tools.map((tool, index) => (
-                  <span
+                  <div
                     key={index}
-                    className="px-6 py-3 bg-gradient-to-r from-studio-taupe to-studio-taupe/80 text-studio-bone rounded-full text-sm font-medium hover:from-studio-gold hover:to-studio-gold-hover hover:text-studio-charcoal transition-all duration-300 cursor-default border border-studio-gold/20 hover:border-studio-gold hover:scale-105 transform"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    className="group flex items-center gap-3 px-4 py-3 bg-studio-taupe/20 rounded-xl border border-studio-gold/20 hover:border-studio-gold/50 transition-all duration-300"
                   >
-                    {tool}
-                  </span>
+                    <div className="w-8 h-8 rounded-lg bg-studio-taupe/30 p-1.5 group-hover:bg-studio-gold/20 transition-colors duration-300">
+                      <img
+                        src={softwareIcons[tool as keyof typeof softwareIcons]}
+                        alt={tool}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="text-studio-bone font-medium">
+                      {tool}
+                    </span>
+                  </div>
                 ))}
               </div>
             </div>

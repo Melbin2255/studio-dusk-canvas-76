@@ -1,4 +1,3 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { Mail, Phone, MessageCircle, Send, MapPin, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
@@ -53,33 +52,32 @@ const ContactSection = () => {
       [e.target.name]: e.target.value
     }));
   };
-
   const contactMethods = [
     {
       icon: Mail,
       label: "Email",
-      value: "hello@studiodusk.com",
-      href: "mailto:hello@studiodusk.com",
+      value: "sojannnnnhere@gmail.com",
+      href: "mailto:sojannnnnhere@gmail.com",
       description: "Drop me a line anytime"
     },
     {
       icon: Phone,
       label: "Phone",
-      value: "+1 (234) 567-890",
-      href: "tel:+12345678900",
+      value: "+91 8075181054",
+      href: "tel:+918075181054",
       description: "Let's have a quick chat"
     },
     {
       icon: MessageCircle,
       label: "WhatsApp",
       value: "Chat on WhatsApp",
-      href: "#",
+      href: "https://wa.me/918075181054?text=Hi%20there!%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project.",
       description: "Quick responses guaranteed"
     },
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "Kerala, India",
       href: "#",
       description: "Available for local meetings"
     }
