@@ -26,9 +26,9 @@ const NavigationBar = () => {
     }`}>
       <div className="container-studio py-4">
         <div className="flex items-center justify-between">
-          {/* Studio Dusk Logo */}
+          {/* Updated Logo */}
           <div className="text-2xl font-bold text-studio-gold">
-            Studio Dusk
+            Sojan Augustine
           </div>
 
           {/* Navigation Menu */}
