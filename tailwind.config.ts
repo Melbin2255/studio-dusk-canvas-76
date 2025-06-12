@@ -20,16 +20,17 @@ export default {
 		},
 		extend: {
 			fontFamily: {
-				'manrope': ['Manrope', 'sans-serif'],
+				'montserrat': ['Montserrat', 'sans-serif'],
+				'lato': ['Lato', 'sans-serif'],
 			},
 			colors: {
-				'studio-hero-from': '#8B5E34',
-				'studio-hero-to': '#2E1F16',
-				'studio-charcoal': '#1E1E1E',
-				'studio-gold': '#D4AF37',
-				'studio-bone': '#F0F0F0',
-				'studio-taupe': '#2A2A2A',
-				'studio-gold-hover': '#E5BF47',
+				'purple-gradient-start': '#8E54E9',
+				'purple-gradient-end': '#E964FF',
+				'purple-light': '#F3ECFF',
+				'text-secondary': '#4A4A4A',
+				'text-muted': '#6B6B6B',
+				'border-light': '#E5E5E5',
+				'border-medium': '#D1D1D1',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -64,10 +65,19 @@ export default {
 					foreground: 'hsl(var(--card-foreground))'
 				},
 			},
+			backgroundImage: {
+				'purple-gradient': 'linear-gradient(135deg, #8E54E9 0%, #E964FF 100%)',
+				'purple-gradient-soft': 'linear-gradient(135deg, rgba(142, 84, 233, 0.1) 0%, rgba(233, 100, 255, 0.1) 100%)',
+			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
+			},
+			boxShadow: {
+				'soft': '0 2px 8px rgba(0, 0, 0, 0.08)',
+				'medium': '0 4px 16px rgba(0, 0, 0, 0.12)',
+				'purple': '0 4px 20px rgba(142, 84, 233, 0.2)',
 			},
 			keyframes: {
 				'accordion-down': {
@@ -85,11 +95,21 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(20px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
+				},
+				'gradient-shift': {
+					'0%, 100%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'fade-in': 'fade-in 0.6s ease-out',
+				'gradient-shift': 'gradient-shift 6s ease-in-out infinite'
 			}
 		}
 	},

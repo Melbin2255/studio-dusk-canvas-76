@@ -7,16 +7,19 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-gradient-to-t from-studio-charcoal via-studio-charcoal to-studio-taupe/20 border-t border-studio-gold/10">
-      <div className="container-studio py-16">
+    <footer className="bg-white border-t border-border-light relative">
+      {/* Purple gradient accent */}
+      <div className="absolute top-0 left-0 w-full h-1 bg-purple-gradient"></div>
+      
+      <div className="container-modern py-16">
         {/* Main Footer Content */}
         <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-12 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <h3 className="text-3xl font-bold text-studio-gold mb-4">
+            <h3 className="text-3xl font-montserrat font-bold text-gradient-purple mb-4">
               Sojan Augustine
             </h3>
-            <p className="text-studio-bone/70 text-lg leading-relaxed mb-6 max-w-md">
+            <p className="text-text-secondary text-lg leading-relaxed mb-6 max-w-md font-lato">
               Visual artist and post-production specialist crafting immersive experiences through 3D animation, VFX, and color grading.
             </p>
             <div className="flex gap-4">
@@ -28,7 +31,7 @@ const Footer = () => {
                 <a
                   key={label}
                   href={href}
-                  className="w-12 h-12 bg-studio-taupe rounded-xl flex items-center justify-center hover:bg-studio-gold hover:text-studio-charcoal transition-all duration-300 group"
+                  className="w-12 h-12 bg-purple-gradient-soft rounded-xl flex items-center justify-center hover:bg-purple-gradient hover:text-white transition-all duration-300 group shadow-soft hover:shadow-purple border border-border-light"
                   aria-label={label}
                 >
                   <Icon size={20} className="transition-transform duration-300 group-hover:scale-110" />
@@ -39,7 +42,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-xl font-semibold text-studio-bone mb-6">Quick Links</h4>
+            <h4 className="text-xl font-montserrat font-semibold text-black mb-6">Quick Links</h4>
             <ul className="space-y-3">
               {['About', 'Expertise', 'Works', 'Contact'].map((item) => (
                 <li key={item}>
@@ -48,7 +51,7 @@ const Footer = () => {
                       const element = document.getElementById(item.toLowerCase());
                       element?.scrollIntoView({ behavior: 'smooth' });
                     }}
-                    className="text-studio-bone/70 hover:text-studio-gold transition-colors duration-300 hover:translate-x-2 transform"
+                    className="text-text-secondary hover:text-purple-gradient-start transition-colors duration-300 hover:translate-x-2 transform font-lato"
                   >
                     {item}
                   </button>
@@ -59,16 +62,17 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-xl font-semibold text-studio-bone mb-6">Get In Touch</h4>
-            <div className="space-y-4">              <div className="flex items-center gap-3 text-studio-bone/70">
-                <Mail size={18} className="text-studio-gold" />
-                <a href="mailto:sojannnnnhere@gmail.com" className="hover:text-studio-gold transition-colors duration-300">
+            <h4 className="text-xl font-montserrat font-semibold text-black mb-6">Get In Touch</h4>
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 text-text-secondary">
+                <Mail size={18} className="text-purple-gradient-start" />
+                <a href="mailto:sojannnnnhere@gmail.com" className="hover:text-purple-gradient-start transition-colors duration-300 font-lato">
                   sojannnnnhere@gmail.com
                 </a>
               </div>
-              <div className="flex items-center gap-3 text-studio-bone/70">
-                <Phone size={18} className="text-studio-gold" />
-                <a href="tel:+918075181054" className="hover:text-studio-gold transition-colors duration-300">
+              <div className="flex items-center gap-3 text-text-secondary">
+                <Phone size={18} className="text-purple-gradient-start" />
+                <a href="tel:+918075181054" className="hover:text-purple-gradient-start transition-colors duration-300 font-lato">
                   +91 8075181054
                 </a>
               </div>
@@ -77,17 +81,17 @@ const Footer = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-studio-taupe pt-8">
+        <div className="border-t border-border-light pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-studio-bone/60 text-sm">
+            <p className="text-text-muted text-sm font-lato">
               © 2025 Sojan Augustine. All rights reserved.
             </p>
             
             <button
               onClick={scrollToTop}
-              className="inline-flex items-center gap-2 text-studio-gold hover:text-studio-gold-hover transition-all duration-300 group bg-studio-taupe hover:bg-studio-gold/20 px-4 py-2 rounded-full"
+              className="inline-flex items-center gap-2 text-purple-gradient-start hover:text-purple-gradient-end transition-all duration-300 group bg-purple-gradient-soft hover:bg-purple-gradient/10 px-4 py-2 rounded-full border border-purple-gradient-start/20 shadow-soft hover:shadow-purple"
             >
-              <span className="text-sm font-medium">Back to Top</span>
+              <span className="text-sm font-medium font-lato">Back to Top</span>
               <ChevronUp 
                 size={16} 
                 className="transition-transform duration-300 group-hover:-translate-y-1" 
