@@ -1,7 +1,17 @@
-
 /* Minimalist Design System */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Lato:wght@300;400;500;600;700&display=swap');
+@import url('https://use.typekit.net/[YOUR-KIT-CODE].css'); /* You'll need to replace [YOUR-KIT-CODE] with actual Adobe Fonts kit code for Europa Grotesk */
+
+@font-face {
+  font-family: 'Europa Grotesk';
+  src: url('/fonts/EuropaGrotesk-Regular.woff2') format('woff2'),
+       url('/fonts/EuropaGrotesk-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -60,6 +70,7 @@
     color: var(--text-primary);
     line-height: 1.6;
     letter-spacing: 0.01em;
+    font-family: var(--font-europa);
   }
 
   /* Modern Typography */

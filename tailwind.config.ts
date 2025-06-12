@@ -18,10 +18,10 @@ export default {
 				'2xl': '1400px'
 			}
 		},
-		extend: {
-			fontFamily: {
+		extend: {			fontFamily: {
 				'montserrat': ['Montserrat', 'sans-serif'],
 				'lato': ['Lato', 'sans-serif'],
+				'europa': ['Europa Grotesk', 'sans-serif'],
 			},
 			colors: {
 				'purple-gradient-start': '#8E54E9',
