@@ -1,6 +1,10 @@
-
 import { useState, useEffect } from 'react';
+import { ChevronDown, Sparkles, Play, Pause } from 'lucide-react';
 import { motion } from 'framer-motion';
+import CustomCursor from '../effects/CustomCursor';
+import FloatingElements from '../effects/FloatingElements';
+import TypewriterText from '../effects/TypewriterText';
+import MotionDecoration from '../effects/MotionDecoration';
 
 const HeroSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,98 +16,175 @@ const HeroSection = () => {
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('about');
     aboutSection?.scrollIntoView({ behavior: 'smooth' });
+  };  const [isPlayingMotion, setIsPlayingMotion] = useState(true);
+
+  // Order adjusted to make Motion Designer appear last for maximum impact
+  const roles = [
+    "Creative Developer",
+    "UI/UX Designer",
+    "3D Artist",
+    "Motion Designer"
+  ];
+
+  // Motion-related decorative elements config
+  const motionDecorations = [
+    { x: '20%', y: '30%', size: 'w-8 h-8', delay: 0 },
+    { x: '80%', y: '60%', size: 'w-6 h-6', delay: 0.2 },
+    { x: '70%', y: '20%', size: 'w-10 h-10', delay: 0.4 },
+  ];
+
+  const toggleMotion = () => {
+    setIsPlayingMotion(!isPlayingMotion);
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-white to-purple-200 overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 right-20 w-32 h-32 bg-purple-200 rounded-full opacity-20 blur-xl animate-pulse"></div>
-        <div className="absolute bottom-20 left-20 w-24 h-24 bg-purple-300 rounded-full opacity-30 blur-lg animate-pulse delay-1000"></div>
-      </div>
+    <section className="relative min-h-screen flex flex-col items-center justify-center bg-white overflow-hidden">
+      {/* Custom Cursor */}
+      <CustomCursor />
+      
+      {/* Background gradient effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-50 to-white pointer-events-none" />
+      <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none bg-[radial-gradient(circle_at_1px_1px,rgba(142,84,233,0.15)_1px,transparent_0)]" style={{ backgroundSize: '40px 40px' }} />
+      
+      {/* Floating Elements */}
+      <FloatingElements />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
-          {/* Left Content - Hey there and availability badge */}
-          <div className="lg:col-span-4 lg:order-1">
+      {/* Main content container */}
+      <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
+        {/* Name reveal */}
+        <motion.div 
+          className="mb-6 sm:mb-8 relative"
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
+          transition={{ duration: 1, delay: 0.2 }}
+        >
+          <div className="absolute -top-4 sm:-top-8 left-1/2 transform -translate-x-1/2 flex items-center gap-2 sm:gap-4">
+            <motion.div 
+              className="w-12 sm:w-16 h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: isVisible ? 1 : 0 }}
+              transition={{ duration: 1.2, delay: 0.5 }}
+            />
             <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              initial={{ scale: 0 }}
+              animate={{ scale: isVisible ? 1 : 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
             >
-              {/* Hey, there */}
-              <h2 className="text-4xl lg:text-5xl font-light text-gray-900 italic mb-8">
-                Hey, <span className="font-normal">there</span>
-              </h2>
-
-              {/* Status Badge */}
-              <motion.div
-                className="inline-flex items-center bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+              <Sparkles className="text-purple-400" size={16} />
+            </motion.div>
+            <motion.div 
+              className="w-12 sm:w-16 h-px bg-gradient-to-l from-transparent via-purple-400 to-transparent"
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: isVisible ? 1 : 0 }}
+              transition={{ duration: 1.2, delay: 0.5 }}
+            />
+          </div>
+          
+          <h1 className="font-europa leading-none tracking-tight">
+            <motion.div 
+              className="mb-2 sm:mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              <span 
+                className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-purple-400"
+                style={{ fontSize: 'clamp(3.5rem, 10vw, 12rem)' }}
               >
-                Available for new works
-              </motion.div>
+                Sojan
+              </span>
             </motion.div>
-          </div>
-
-          {/* Center Content - Profile Image */}
-          <div className="lg:col-span-4 lg:order-2 flex justify-center">
+            
             <motion.div
-              className="relative"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
             >
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden bg-gradient-to-br from-purple-200 to-purple-100 shadow-2xl">
-                <img
-                  src="/images/profile.jpg"
-                  alt="Sojan Augustine"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              {/* Decorative ring */}
-              <div className="absolute inset-0 rounded-full border-4 border-purple-200 opacity-50 animate-pulse"></div>
+              <span 
+                className="inline-block text-gray-900"
+                style={{ 
+                  fontSize: 'clamp(4rem, 12vw, 14rem)',
+                  letterSpacing: '-0.02em'
+                }}
+              >
+                Augustine
+              </span>
             </motion.div>
-          </div>
+          </h1>
 
-          {/* Right Content - Skills */}
-          <div className="lg:col-span-4 lg:order-3">
+          {/* Roles Typewriter */}          {/* Motion dcoration elements */}
+          {motionDecorations.map((decoration, index) => (
             <motion.div
-              className="text-right"
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
+              key={index}
+              className="absolute pointer-events-none"
+              style={{ left: decoration.x, top: decoration.y }}
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ 
+                duration: 0.8, 
+                delay: decoration.delay,
+                type: "spring",
+                stiffness: 100
+              }}
             >
-              <div className="text-sm text-gray-600 leading-relaxed mb-8">
-                <p>Specialized in 3D animation,</p>
-                <p>VFX,Color Grading,Motion Graphics,</p>
-                <p>Video & Photo Editing</p>
-              </div>
+              <div className={`${decoration.size} rounded-lg border border-purple-200 bg-purple-50/30 backdrop-blur-sm transform rotate-12`} />
+            </motion.div>
+          ))}          <motion.div
+            className="mt-12 sm:mt-16 relative"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isVisible ? 1 : 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+          >
+            <div className="relative">
+              {/* Motion Decoration */}
+              {isPlayingMotion && <MotionDecoration />}
               
-              <div>
-                <p className="text-xl font-semibold text-gray-900">Freelance</p>
-                <p className="text-lg font-light text-gray-700 italic">Digital Creator</p>
-              </div>
-            </motion.div>
-          </div>
+              {/* Background glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-200/20 via-transparent to-purple-200/20 blur-xl" />
+              
+              <TypewriterText 
+                words={roles} 
+                className="text-2xl sm:text-3xl lg:text-4xl text-purple-600 font-medium tracking-wide"
+              />
 
-          {/* Bottom Content - Main Title spanning full width */}
-          <div className="lg:col-span-12 lg:order-4 mt-8">
-            <motion.div
-              className="text-left"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-              transition={{ duration: 0.8, delay: 1 }}
+              {/* Play/Pause Motion Button */}
+              <motion.button
+                className="absolute -right-12 top-1/2 -translate-y-1/2 p-2 rounded-full bg-purple-100/50 hover:bg-purple-200/50 backdrop-blur-sm transition-colors"
+                onClick={toggleMotion}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {isPlayingMotion ? (
+                  <Pause className="w-4 h-4 text-purple-600/70" />
+                ) : (
+                  <Play className="w-4 h-4 text-purple-600/70" />
+                )}
+              </motion.button>
+            </div>
+          </motion.div>
+        </motion.div>          {/* Scroll indicator - Now part of the content flow */}
+          <motion.div
+            className="mt-12 sm:mt-16 flex justify-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: isVisible ? 1 : 0, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
+            <button
+              onClick={scrollToAbout}
+              className="p-3 rounded-full bg-purple-500/10 hover:bg-purple-500/20 transition-all duration-300 group"
+              style={{
+                boxShadow: '0 0 20px rgba(168, 85, 247, 0.2)',
+              }}
             >
-              <h1 className="text-6xl lg:text-8xl font-bold text-gray-900 leading-tight">
-                I AM<br />
-                SOJAN
-              </h1>
-            </motion.div>
-          </div>
-        </div>
+              <motion.div
+                className="p-2 rounded-full backdrop-blur-sm flex items-center justify-center"
+                whileHover={{ scale: 1.1, y: 5 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <ChevronDown className="w-8 h-8 text-purple-600 group-hover:text-purple-700 animate-bounce" />
+              </motion.div>
+            </button>
+          </motion.div>
       </div>
     </section>
   );
