@@ -1,96 +1,107 @@
 
-import { useState, useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import TiltElement from '../effects/TiltElement';
+import { Quote, Award, Target, Zap } from 'lucide-react';
 
 const AboutSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const { elementRef: titleRef, isVisible: titleVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
+  const { elementRef: contentRef, isVisible: contentVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.2 });
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const highlights = [
+    { icon: Award, text: "Visual Development", color: "text-purple-gradient-start" },
+    { icon: Target, text: "Motion Design", color: "text-purple-gradient-end" },
+    { icon: Zap, text: "Creative Direction", color: "text-purple-gradient-start" }
+  ];
 
   return (
-    <section 
-      id="about" 
-      ref={sectionRef} 
-      className="py-20 bg-gray-900 text-white relative overflow-hidden"
-    >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-600 rounded-full opacity-5 blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-purple-400 rounded-full opacity-10 blur-2xl"></div>
-      </div>
+    <section id="about" className="section-padding bg-white relative overflow-hidden corner-accent-tl corner-accent-br">
+      {/* Subtle purple gradient accents */}
+      <div className="absolute top-0 left-0 w-32 h-32 bg-purple-gradient-soft rounded-br-full opacity-30"></div>
+      <div className="absolute bottom-0 right-0 w-40 h-40 bg-purple-gradient-soft rounded-tl-full opacity-20"></div>
+      
+      <div className="container-modern relative z-10">
+        {/* Enhanced Section Title */}
+        <div className="mb-16" ref={titleRef}>
+          <div className={`text-center transition-all duration-1000 ${titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="w-12 h-px bg-purple-gradient"></div>
+              <span className="text-text-muted font-lato font-medium tracking-wider uppercase text-sm">About Me</span>
+              <div className="w-12 h-px bg-purple-gradient"></div>
+            </div>
+            
+            <h2 className="font-montserrat text-gradient-purple relative inline-block">
+              Creative Vision & Expertise
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-purple-gradient rounded-full"></div>
+            </h2>
+          </div>
+        </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <motion.div
-          className="bg-gray-800 rounded-3xl p-8 lg:p-12"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Left Content */}
-            <div>
-              <motion.h3
-                className="text-2xl lg:text-3xl font-light italic text-gray-300 mb-6"
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -30 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-              >
-                About Me
-              </motion.h3>
-
-              <motion.div
-                className="space-y-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-              >
-                <p className="text-lg leading-relaxed">
-                  I'm Sojan Augustine, a <span className="font-semibold italic">BCA graduate</span> and{' '}
-                  <span className="font-semibold italic">digital creative professional</span> with{' '}
-                  <span className="font-semibold italic">expertise in</span> visual effects, motion design,
-                  and content creation.
-                </p>
-              </motion.div>
+        {/* Content Area */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center" ref={contentRef}>
+          {/* Text Content */}
+          <div className={`transition-all duration-1000 ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}>
+            {/* Quote block */}
+            <div className="card-modern mb-8 relative bg-purple-gradient-soft border-purple-gradient-start/20">
+              <Quote className="absolute top-4 left-4 text-purple-gradient-start/60" size={24} />
+              <p className="text-black text-lg italic leading-relaxed pl-8 font-lato">
+                "Creating immersive digital experiences through modern design and technology."
+              </p>
+            </div>
+            
+            {/* Main content */}
+            <div className="space-y-6">
+              <p className="text-text-secondary leading-relaxed font-lato">
+                I'm Sojan Augustine, a BCA graduate and digital creative professional. My expertise spans across visual effects, motion design, and digital content creation.
+              </p>
+              <p className="text-text-secondary leading-relaxed font-lato">
+                With a modern approach to design and technology, I focus on creating engaging digital experiences that combine innovative techniques with practical solutions.
+              </p>
             </div>
 
-            {/* Right Content - Expertise Preview */}
-            <motion.div
-              className="bg-gray-700 rounded-2xl p-6"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 30 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-            >
-              <h4 className="text-xl font-semibold mb-4">My Expertise</h4>
-              <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                My expertise lies in transforming creative concepts into compelling visual realities by leveraging 
-                advanced design tools and industry-standard software, combining technical precision with innovative thinking.
-              </p>
-              
-              <button className="inline-flex items-center text-white bg-gray-600 hover:bg-gray-500 px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300">
-                See more
-                <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </button>
-            </motion.div>
+            {/* Modern highlight cards */}
+            <div className="grid gap-4 mt-8">
+              {highlights.map((highlight, index) => (
+                <div 
+                  key={index}
+                  className="group flex items-center gap-4 p-4 bg-white rounded-xl border border-border-light hover:border-purple-gradient-start/30 shadow-soft hover:shadow-purple transition-all duration-300 hover:transform hover:translate-x-2"
+                >
+                  <div className="w-10 h-10 bg-purple-gradient-soft rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <highlight.icon className={`${highlight.color} group-hover:text-purple-gradient-end transition-colors duration-300`} size={20} />
+                  </div>
+                  <span className="text-black font-medium font-lato group-hover:text-purple-gradient-start transition-colors duration-300">
+                    {highlight.text}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
-        </motion.div>
+
+          {/* Enhanced Image */}
+          <div className={`transition-all duration-1000 delay-300 ${contentVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
+            <div className="relative">
+              <div className="absolute -inset-4 bg-purple-gradient-soft rounded-3xl blur-xl"></div>
+              <div className="absolute -inset-2 bg-white/80 rounded-2xl border border-border-light"></div>
+              
+              <TiltElement>
+                <div className="relative overflow-hidden rounded-xl">
+                  <img
+                    src="/images/profile.jpg"
+                    alt="Sojan Augustine - Visual Artist"
+                    className="w-full rounded-xl shadow-medium hover:shadow-purple transition-all duration-500 hover:scale-105"
+                  />
+                  
+                  <div className="absolute inset-0 bg-purple-gradient/10 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+                  
+                  {/* Corner accents */}
+                  <div className="absolute top-4 left-4 w-6 h-6 border-l-2 border-t-2 border-purple-gradient-start/60"></div>
+                  <div className="absolute top-4 right-4 w-6 h-6 border-r-2 border-t-2 border-purple-gradient-start/60"></div>
+                  <div className="absolute bottom-4 left-4 w-6 h-6 border-l-2 border-b-2 border-purple-gradient-start/60"></div>
+                  <div className="absolute bottom-4 right-4 w-6 h-6 border-r-2 border-b-2 border-purple-gradient-start/60"></div>
+                </div>
+              </TiltElement>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
