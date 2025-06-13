@@ -1,64 +1,47 @@
+
 import { useState, useRef, useEffect } from 'react';
-import { Check, ArrowRight, Sparkles, Clapperboard, Palette, Film, Edit } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-// Software icons mapping
+// Software icons mapping for the expertise cards
 const softwareIcons = {
-  'Autodesk Maya': '/icons/maya.png',
-  'Cinema 4D': '/icons/c4d.png',
-  'Blender': '/icons/blender.png',
-  'Adobe After Effects': '/icons/ae.png',
-  'Blackmagic Fusion': '/icons/fusion.png',
-  'Nuke': '/icons/nuke.png',
-  'DaVinci Resolve': '/icons/resolve.png',
-  'Adobe Premiere Pro': '/icons/premiere.png',
-  'Adobe Photoshop': '/icons/photoshop.png',
-  'Adobe Illustrator': '/icons/illustrator.png'
+  'ae': '/icons/ae.png',
+  'resolve': '/icons/resolve.png',
+  'premiere': '/icons/premiere.png',
+  'photoshop': '/icons/photoshop.png',
+  'illustrator': '/icons/illustrator.png',
+  'maya': '/icons/maya.png',
+  'c4d': '/icons/c4d.png',
+  'blender': '/icons/blender.png'
 };
 
-const tabIcons = {
-  '3D Animation': Clapperboard,
-  'VFX': Film,
-  'Color Grading': Palette,
-  'Editing': Edit
-};
-
-const expertiseData = {
-  'Color Grading': {
-    title: 'Color Grading',
-    description: 'I meticulously refine the mood and tone of visuals, ensuring consistent and impactful aesthetics that elevate the final product.',
-    competencies: ['Color Correction', 'Look Development', 'Shot Matching', 'Stylization'],
-    tools: ['DaVinci Resolve', 'Adobe Premiere Pro'],
-    image: '/images/colorg.png',
-    color: 'from-orange-500/20 to-red-500/20'
-  },
-  'Editing': {
-    title: 'Video & Photo Editing',
-    description: 'I transform raw footage and images into polished, compelling visual content, focusing on pacing, composition, and overall narrative flow.',
-    competencies: ['Storytelling & Pacing', 'Sound Design & Mixing', 'Graphic Integration', 'Image Retouching'],
-    tools: ['Adobe Premiere Pro', 'Adobe Photoshop', 'Adobe Illustrator'],
-    image: 'images/videoedit.png',
-    color: 'from-pink-500/20 to-violet-500/20'
-  },
-  'VFX': {
+const expertiseData = [
+  {
     title: 'Visual Effects',
     description: 'I create stunning visual effects that seamlessly blend with live-action footage, enhancing storytelling and delivering impactful cinematic moments.',
-    competencies: ['Compositing', 'Green Screen Keying', 'Rotoscoping', 'Tracking & Stabilization'],
-    tools: ['Adobe After Effects', 'Blackmagic Fusion', 'Nuke'],
-    image: '/images/vfx.png',
-    color: 'from-green-500/20 to-teal-500/20'
+    icons: ['ae', 'resolve'],
+    bgColor: 'bg-gray-900'
   },
-  '3D Animation': {
+  {
+    title: 'Color Grading',
+    description: 'I meticulously refine the mood and tone of visuals, ensuring consistent and impactful aesthetics that elevate the final product.',
+    icons: ['resolve', 'premiere'],
+    bgColor: 'bg-gray-800'
+  },
+  {
+    title: 'Video & Photo Editing',
+    description: 'I transform raw footage and images into polished, compelling visual content, focusing on pacing, composition, and overall narrative flow.',
+    icons: ['photoshop', 'premiere', 'illustrator'],
+    bgColor: 'bg-gray-900'
+  },
+  {
     title: '3D Animation',
     description: 'I bring stories to life through captivating 3D animations, blending technical skill with artistic vision to create immersive experiences.',
-    competencies: ['Character Animation', 'Motion Graphics', 'Visual Effects Integration'],
-    tools: ['Autodesk Maya', 'Cinema 4D', 'Blender'],
-    image: '/images/3d.png',
-    color: 'from-blue-500/20 to-purple-500/20'
+    icons: ['maya', 'blender'],
+    bgColor: 'bg-gray-800'
   }
-};
+];
 
 const ExpertiseSection = () => {
-  const [activeTab, setActiveTab] = useState('Color Grading');
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -69,7 +52,7 @@ const ExpertiseSection = () => {
           setIsVisible(true);
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
@@ -79,140 +62,78 @@ const ExpertiseSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const tabs = Object.keys(expertiseData);
-  const activeData = expertiseData[activeTab as keyof typeof expertiseData];
-
   return (
-    <section ref={sectionRef} className="py-32 bg-gradient-to-b from-studio-charcoal via-studio-taupe/10 to-studio-charcoal relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-studio-gold/5 rounded-full blur-3xl animate-float"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-studio-gold/3 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }}></div>
-      </div>
-
-      <div className="container-studio relative z-10">
-        {/* Enhanced Section Title */}
-        <div className={`text-center mb-20 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <Sparkles className="text-studio-gold" size={24} />
-            <span className="text-studio-bone/70 font-medium tracking-wider uppercase text-sm">What I Do Best</span>
-            <Sparkles className="text-studio-gold" size={24} />
-          </div>
-          
-          <h2 className="text-5xl lg:text-6xl font-bold text-studio-gold mb-6 relative">
+    <section 
+      id="expertise" 
+      ref={sectionRef} 
+      className="py-20 bg-gray-100 relative overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Section Header */}
+        <motion.div
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
             My Expertise
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-studio-gold rounded-full"></div>
           </h2>
-          
-          <p className="text-xl text-studio-bone/70 max-w-3xl mx-auto leading-relaxed">
-            My expertise lies in transforming creative concepts into compelling visual realities through a combination of specialized skills and cutting-edge techniques. I bring stories to life with precision and artistry across various digital mediums.
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Specialized skills in transforming creative concepts into compelling visual realities
           </p>
-        </div>
+        </motion.div>
 
-        {/* Modern Tab Navigation - Enhanced */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-20 transition-all duration-1000 delay-300">
-          {tabs.map((tab, index) => {
-            const TabIcon = tabIcons[tab as keyof typeof tabIcons];
-            return (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`group relative p-6 rounded-2xl border transition-all duration-500 overflow-hidden ${
-                  activeTab === tab
-                    ? 'bg-studio-gold text-studio-charcoal border-studio-gold shadow-xl shadow-studio-gold/25'
-                    : 'bg-studio-taupe/30 text-studio-bone border-studio-taupe hover:border-studio-gold/50 backdrop-blur-sm'
-                }`}
-              >
-                <div className="relative z-10 flex items-center gap-3">
-                  <TabIcon size={24} />
-                  <div>
-                    <h3 className="font-semibold text-lg">{tab}</h3>
-                    <span className="text-sm opacity-70">
-                      {activeTab === tab ? 'Currently viewing' : 'Click to view'}
-                    </span>
-                  </div>
-                </div>
-                
-                {activeTab !== tab && (
-                  <div className="absolute inset-0 bg-gradient-to-r from-studio-gold/10 to-studio-gold/5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-2xl"></div>
-                )}
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Enhanced Content Panel */}
-        <div className={`grid lg:grid-cols-2 gap-16 items-center transition-all duration-500 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-          {/* Visual Column */}
-          <div className="relative group">
-            <div className={`absolute inset-0 bg-gradient-to-br ${activeData.color} rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500`}></div>
-            <div className="relative aspect-video rounded-3xl overflow-hidden bg-studio-taupe border-2 border-studio-gold/20 group-hover:border-studio-gold/40 transition-all duration-500">
-              <img 
-                src={activeData.image}
-                alt={activeData.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-studio-charcoal/50 to-transparent"></div>
-            </div>
-          </div>
-
-          {/* Content Column */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-4xl lg:text-5xl font-bold text-studio-bone mb-4">
-                {activeData.title}
-              </h3>
+        {/* Expertise Cards Grid */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {expertiseData.map((item, index) => (
+            <motion.div
+              key={item.title}
+              className={`${item.bgColor} text-white rounded-2xl p-8 relative overflow-hidden group hover:scale-105 transition-transform duration-300`}
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              {/* Background decoration */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full transform translate-x-16 -translate-y-16"></div>
               
-              <p className="text-lg text-studio-bone/80 leading-relaxed">
-                {activeData.description}
-              </p>
-            </div>
-
-            {/* Enhanced Key Competencies */}
-            <div className="bg-studio-taupe/30 backdrop-blur-sm rounded-2xl p-6 border border-studio-gold/20">
-              <h4 className="text-xl font-semibold text-studio-gold mb-6 flex items-center gap-2">
-                <Check className="text-studio-gold" size={20} />
-                Key Competencies
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {activeData.competencies.map((competency, index) => (
-                  <div 
-                    key={index} 
-                    className="flex items-center gap-4 p-4 bg-studio-charcoal/50 rounded-xl border border-studio-gold/10 hover:border-studio-gold/30 transition-all duration-300"
+              <div className="relative z-10">
+                {/* Title */}
+                <h3 className="text-xl lg:text-2xl font-bold mb-4 flex items-center">
+                  {item.title}
+                  <svg 
+                    className="ml-auto w-6 h-6 transform group-hover:translate-x-2 transition-transform duration-300" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
                   >
-                    <div className="w-2 h-2 bg-studio-gold rounded-full"></div>
-                    <span className="text-studio-bone font-medium">{competency}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </h3>
 
-            {/* Enhanced Primary Tools */}
-            <div>
-              <h4 className="text-xl font-semibold text-studio-gold mb-6">
-                Primary Tools
-              </h4>
-              <div className="flex flex-wrap gap-4">
-                {activeData.tools.map((tool, index) => (
-                  <div
-                    key={index}
-                    className="group flex items-center gap-3 px-4 py-3 bg-studio-taupe/20 rounded-xl border border-studio-gold/20 hover:border-studio-gold/50 transition-all duration-300"
-                  >
-                    <div className="w-8 h-8 rounded-lg bg-studio-taupe/30 p-1.5 group-hover:bg-studio-gold/20 transition-colors duration-300">
+                {/* Description */}
+                <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                  {item.description}
+                </p>
+
+                {/* Software Icons */}
+                <div className="flex items-center space-x-3">
+                  {item.icons.map((icon, iconIndex) => (
+                    <div
+                      key={iconIndex}
+                      className="w-10 h-10 bg-white/10 rounded-lg p-2 flex items-center justify-center backdrop-blur-sm"
+                    >
                       <img
-                        src={softwareIcons[tool as keyof typeof softwareIcons]}
-                        alt={tool}
+                        src={softwareIcons[icon as keyof typeof softwareIcons]}
+                        alt={icon}
                         className="w-full h-full object-contain"
                       />
                     </div>
-                    <span className="text-studio-bone font-medium">
-                      {tool}
-                    </span>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
