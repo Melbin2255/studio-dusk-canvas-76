@@ -1,6 +1,6 @@
 
 import { useState, useRef, useEffect } from 'react';
-import { Check, ArrowRight, Sparkles, Eye, Palette, Video, Edit3, Camera, Box, Zap } from 'lucide-react';
+import { Check, ArrowRight, Sparkles, Eye, Palette, Film, Edit, Camera, Cube, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // Custom SVG Icons for expertise
@@ -12,7 +12,7 @@ const CustomIcons = {
       <circle cx="7" cy="18" r="1.5" fill="#9370DB" opacity="0.8"/>
     </svg>
   ),
-  'Color Grading': () => (
+  ColorGrading: () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect x="3" y="6" width="18" height="12" rx="2" fill="none" stroke="#48D1CC" strokeWidth="2"/>
       <rect x="5" y="8" width="4" height="8" fill="#FF69B4" opacity="0.6"/>
@@ -26,7 +26,7 @@ const CustomIcons = {
       <path d="M20.71 7.04C21.1 6.65 21.1 6.02 20.71 5.63L18.37 3.29C17.98 2.9 17.35 2.9 16.96 3.29L15.13 5.12L18.88 8.87L20.71 7.04Z" fill="#FF69B4"/>
     </svg>
   ),
-  '3D Animation': () => (
+  Animation3D: () => (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M12 2L22 8.5V15.5L12 22L2 15.5V8.5L12 2Z" fill="none" stroke="#48D1CC" strokeWidth="2"/>
       <path d="M12 2V22" stroke="#FF69B4" strokeWidth="1.5"/>
@@ -120,12 +120,6 @@ const ExpertiseSection = () => {
   const tabs = Object.keys(expertiseData);
   const activeData = expertiseData[activeTab as keyof typeof expertiseData];
 
-  // Function to get the correct icon component
-  const getIconComponent = (tab: string) => {
-    const IconComponent = CustomIcons[tab as keyof typeof CustomIcons];
-    return IconComponent || (() => <Sparkles size={24} />); // Fallback icon
-  };
-
   return (
     <section 
       ref={sectionRef} 
@@ -171,7 +165,7 @@ const ExpertiseSection = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           {tabs.map((tab, index) => {
-            const IconComponent = getIconComponent(tab);
+            const IconComponent = CustomIcons[tab as keyof typeof CustomIcons];
             return (
               <motion.button
                 key={tab}
