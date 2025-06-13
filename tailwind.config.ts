@@ -18,13 +18,10 @@ export default {
 				'2xl': '1400px'
 			}
 		},
-		extend: {
-			fontFamily: {
+		extend: {			fontFamily: {
 				'montserrat': ['Montserrat', 'sans-serif'],
 				'lato': ['Lato', 'sans-serif'],
 				'europa': ['Europa Grotesk', 'sans-serif'],
-				'great-vibes': ['Great Vibes', 'cursive'],
-				'helvetica': ['Helvetica Neue', 'Inter', 'Arial', 'sans-serif'],
 			},
 			colors: {
 				'purple-gradient-start': '#8E54E9',
@@ -34,10 +31,6 @@ export default {
 				'text-muted': '#6B6B6B',
 				'border-light': '#E5E5E5',
 				'border-medium': '#D1D1D1',
-				'hero-violet': '#9370DB',
-				'hero-lavender': '#E6E6FA',
-				'hero-teal': '#8FBC8F',
-				'hover-pink': '#FFB6C1',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -75,7 +68,6 @@ export default {
 			backgroundImage: {
 				'purple-gradient': 'linear-gradient(135deg, #8E54E9 0%, #E964FF 100%)',
 				'purple-gradient-soft': 'linear-gradient(135deg, rgba(142, 84, 233, 0.1) 0%, rgba(233, 100, 255, 0.1) 100%)',
-				'hero-gradient': 'linear-gradient(135deg, #9370DB 0%, #E6E6FA 100%)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -86,7 +78,6 @@ export default {
 				'soft': '0 2px 8px rgba(0, 0, 0, 0.08)',
 				'medium': '0 4px 16px rgba(0, 0, 0, 0.12)',
 				'purple': '0 4px 20px rgba(142, 84, 233, 0.2)',
-				'hero-glow': '0 0 20px rgba(255,255,255,0.5)',
 			},
 			keyframes: {
 				'accordion-down': {

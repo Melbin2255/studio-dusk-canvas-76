@@ -15,124 +15,96 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-[#9370DB] to-[#E6E6FA] overflow-hidden">
-      {/* Background geometric shapes */}
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-100 via-white to-purple-200 overflow-hidden">
+      {/* Background decorative elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-1/4 w-16 h-16 opacity-20" style={{
-          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-          backgroundColor: '#8FBC8F'
-        }}></div>
-        <div className="absolute bottom-1/4 right-1/3 w-20 h-20 opacity-15" style={{
-          clipPath: 'polygon(30% 0%, 0% 50%, 30% 100%, 70% 100%, 100% 50%, 70% 0%)',
-          backgroundColor: '#8FBC8F'
-        }}></div>
-        <div className="absolute top-1/3 right-20 w-12 h-12 opacity-25" style={{
-          clipPath: 'polygon(50% 0%, 0% 100%, 100% 100%)',
-          backgroundColor: '#8FBC8F'
-        }}></div>
-        <div className="absolute bottom-20 left-20 w-14 h-14 opacity-20" style={{
-          clipPath: 'polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)',
-          backgroundColor: '#8FBC8F'
-        }}></div>
+        <div className="absolute top-20 right-20 w-32 h-32 bg-purple-200 rounded-full opacity-20 blur-xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-20 w-24 h-24 bg-purple-300 rounded-full opacity-30 blur-lg animate-pulse delay-1000"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
-        <div className="grid lg:grid-cols-12 gap-8 items-center min-h-[80vh]">
-          {/* Left Content Area */}
-          <div className="lg:col-span-7 space-y-8">
-            {/* Hey, there - Top Left */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-12 gap-8 items-center">
+          {/* Left Content - Hey there and availability badge */}
+          <div className="lg:col-span-4 lg:order-1">
             <motion.div
-              className="text-left"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : -50 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h2 className="text-5xl lg:text-6xl text-black italic mb-8" style={{
-                fontFamily: 'Great Vibes, cursive',
-                textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
-              }}>
-                Hey, there
+              {/* Hey, there */}
+              <h2 className="text-4xl lg:text-5xl font-light text-gray-900 italic mb-8">
+                Hey, <span className="font-normal">there</span>
               </h2>
-            </motion.div>
 
-            {/* Availability Badge */}
-            <motion.div
-              className="flex justify-start mb-6"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <button className="bg-black text-white px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 hover:scale-105 hover:bg-[#FFB6C1] hover:text-black">
+              {/* Status Badge */}
+              <motion.div
+                className="inline-flex items-center bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
                 Available for new works
-              </button>
-            </motion.div>
-
-            {/* I AM SOJAN */}
-            <motion.div
-              className="text-left"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-            >
-              <h1 className="text-6xl lg:text-7xl font-bold text-black leading-tight tracking-tight" style={{
-                fontFamily: 'Helvetica Neue, Arial, sans-serif',
-                fontWeight: 700
-              }}>
-                I AM<br />
-                SOJAN
-              </h1>
-            </motion.div>
-
-            {/* Specialties Text */}
-            <motion.div
-              className="text-left max-w-md"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              <p className="text-black text-base leading-relaxed italic mb-4" style={{
-                fontFamily: 'Helvetica Neue, Arial, sans-serif',
-                fontWeight: 300
-              }}>
-                Specialized in 3D animation, VFX, Color Grading, Motion Graphics, Video & Photo Editing
-              </p>
-              
-              <p className="text-black text-lg font-medium" style={{
-                fontFamily: 'Helvetica Neue, Arial, sans-serif',
-                fontWeight: 500
-              }}>
-                Freelance Digital Creator
-              </p>
+              </motion.div>
             </motion.div>
           </div>
 
-          {/* Right Content - Profile Image */}
-          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+          {/* Center Content - Profile Image */}
+          <div className="lg:col-span-4 lg:order-2 flex justify-center">
             <motion.div
               className="relative"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: isVisible ? 1 : 0, scale: isVisible ? 1 : 0.8 }}
-              transition={{ duration: 0.8, delay: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-lg overflow-hidden" style={{
-                boxShadow: '0 0 20px rgba(255,255,255,0.5)'
-              }}>
+              <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden bg-gradient-to-br from-purple-200 to-purple-100 shadow-2xl">
                 <img
                   src="/images/profile.jpg"
                   alt="Sojan Augustine"
                   className="w-full h-full object-cover"
                 />
               </div>
+              {/* Decorative ring */}
+              <div className="absolute inset-0 rounded-full border-4 border-purple-200 opacity-50 animate-pulse"></div>
+            </motion.div>
+          </div>
+
+          {/* Right Content - Skills */}
+          <div className="lg:col-span-4 lg:order-3">
+            <motion.div
+              className="text-right"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <div className="text-sm text-gray-600 leading-relaxed mb-8">
+                <p>Specialized in 3D animation,</p>
+                <p>VFX,Color Grading,Motion Graphics,</p>
+                <p>Video & Photo Editing</p>
+              </div>
+              
+              <div>
+                <p className="text-xl font-semibold text-gray-900">Freelance</p>
+                <p className="text-lg font-light text-gray-700 italic">Digital Creator</p>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom Content - Main Title spanning full width */}
+          <div className="lg:col-span-12 lg:order-4 mt-8">
+            <motion.div
+              className="text-left"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 30 }}
+              transition={{ duration: 0.8, delay: 1 }}
+            >
+              <h1 className="text-6xl lg:text-8xl font-bold text-gray-900 leading-tight">
+                I AM<br />
+                SOJAN
+              </h1>
             </motion.div>
           </div>
         </div>
       </div>
-
-      {/* Google Fonts import for Great Vibes */}
-      <link 
-        href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" 
-        rel="stylesheet" 
-      />
     </section>
   );
 };
