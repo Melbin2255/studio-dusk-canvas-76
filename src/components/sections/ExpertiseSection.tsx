@@ -1,6 +1,6 @@
 
 import { useState, useRef, useEffect } from 'react';
-import { Check, ArrowRight, Sparkles, Eye, Palette, Film, Edit, Camera, Cube, Zap } from 'lucide-react';
+import { Check, ArrowRight, Sparkles, Eye, Palette, Video, Edit3, Camera, Box, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // Custom SVG Icons for expertise
