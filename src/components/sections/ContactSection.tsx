@@ -37,7 +37,7 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form subddmission
+    // Simulate form subddmisssion
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     toast({
