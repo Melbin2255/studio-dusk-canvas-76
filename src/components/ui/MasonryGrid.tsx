@@ -1,4 +1,3 @@
-
 import { useState, useEffect, ReactNode } from 'react';
 
 interface WorkItem {
@@ -38,7 +37,7 @@ const MasonryGrid = ({ items = [], columns = 3, gap = 20, className = '' }: Maso
       {items.map((item, index) => (
         <div
           key={item.id}
-          className="transition-all duration-500 ease-out overflow-hidden rounded-lg group cursor-pointer"
+          className="transition-all duration-500 ease-out overflow-hidden group cursor-pointer"
           style={{
             animationDelay: `${index * 0.1}s`,
           }}

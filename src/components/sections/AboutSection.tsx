@@ -1,12 +1,15 @@
-
+import { motion } from 'framer-motion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { ArrowRight } from 'lucide-react';
+import GradientBlobs from '../effects/GradientBlobs';
 
 const AboutSection = () => {
   const { elementRef: sectionRef, isVisible } = useScrollAnimation<HTMLDivElement>({ threshold: 0.3 });
 
   return (
-    <section ref={sectionRef} id="about" className="py-24 bg-gray-50 relative overflow-hidden">
+    <section ref={sectionRef} id="about" className="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-br from-[#f8f5ff] via-[#f3e6ff] to-[#ede0ff]">
+      <GradientBlobs intensity="light" />
+      
       <div className="container-modern">
         <div className="max-w-6xl mx-auto space-y-16">
           

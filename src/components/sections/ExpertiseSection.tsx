@@ -1,6 +1,7 @@
-
 import { useState, useRef, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import GradientBlobs from '../effects/GradientBlobs';
 
 // Software icons mapping
 const softwareIcons = {
@@ -69,11 +70,9 @@ const ExpertiseSection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-gradient-to-br from-white to-purple-light/30 relative overflow-hidden">
-      {/* Background gradient decorations */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-gradient opacity-5 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-purple-gradient opacity-5 rounded-full blur-3xl"></div>
-      
+    <section ref={sectionRef} className="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-br from-[#f8f5ff] via-[#f3e6ff] to-[#ede0ff]">
+      <GradientBlobs intensity="medium" className="opacity-75" />
+
       <div className="container-modern relative z-10">
         {/* Section Header */}
         <div className={`text-center mb-16 transition-all duration-1000 ${

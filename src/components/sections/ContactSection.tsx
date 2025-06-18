@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Mail, Phone, MessageCircle, Send, MapPin, Clock } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { motion } from 'framer-motion';
+import GradientBlobs from '../effects/GradientBlobs';
 
 const ContactSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -84,10 +86,8 @@ const ContactSection = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="contact" className="py-16 sm:py-20 lg:py-32 bg-gradient-to-br from-studio-charcoal via-studio-charcoal to-studio-taupe relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(212,175,55,0.05)_0%,transparent_50%)] pointer-events-none"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(212,175,55,0.03)_0%,transparent_50%)] pointer-events-none"></div>
+    <section ref={sectionRef} id="contact" className="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-br from-[#f8f5ff] via-[#f3e6ff] to-[#ede0ff]">
+      <GradientBlobs intensity="medium" className="opacity-80" />
       
       <div className="container-studio relative z-10">
         {/* Section Header */}

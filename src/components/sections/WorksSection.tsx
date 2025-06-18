@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import MasonryGrid from '../ui/MasonryGrid';
 import { Filter, Play } from 'lucide-react';
+import GradientBlobs from '../effects/GradientBlobs';
 
 interface WorkItem {
   id: number;
@@ -128,9 +130,8 @@ const WorksSection = () => {
     : works.filter(work => work.category === selectedCategory);
 
   return (
-    <section id="works" className="py-32 bg-gradient-to-b from-studio-charcoal via-studio-taupe/5 to-studio-charcoal relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-radial from-studio-gold/5 via-transparent to-transparent"></div>
+    <section id="works" className="relative py-20 lg:py-32 overflow-hidden bg-gradient-to-br from-[#f8f5ff] via-[#f3e6ff] to-[#ede0ff]">
+      <GradientBlobs intensity="light" className="opacity-90" />
       
       <div className="container-studio relative z-10">
         {/* Enhanced Section Title */}
